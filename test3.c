@@ -159,7 +159,7 @@ static inline bool modify_watchpoint(int fd, uintptr_t address) {
         .exclude_hv             = 1,
         .disabled               = 0, /* enabled */
     };
-    CHECK(ioctl(fd, PERF_EVENT_IOC_MODIFY_BREAKPOINT, (unsigned long) (&pe)));
+    CHECK(ioctl(fd, PERF_EVENT_IOC_MODIFY_ATTRIBUTES, (unsigned long) (&pe)));
 }
 
 
@@ -235,8 +235,8 @@ int main(){
 	else
 		printf("\n Test failed\n");
 
-         printf("Without MODIFY_BREAKPOINT elapsed: %f seconds\n", (double)(t2-t1) / CLOCKS_PER_SEC);
-         printf("With MODIFY_BREAKPOINT elapsed: %f seconds\n", (double)(t4-t3) / CLOCKS_PER_SEC);
+         printf("Without MODIFY_ATTRIBUTES elapsed: %f seconds\n", (double)(t2-t1) / CLOCKS_PER_SEC);
+         printf("With MODIFY_ATTRIBUTES elapsed: %f seconds\n", (double)(t4-t3) / CLOCKS_PER_SEC);
          printf("Speedup: %fx\n", (double)(t2-t1)/(t4-t3));
 
         return 0;
